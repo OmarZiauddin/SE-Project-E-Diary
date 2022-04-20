@@ -3,13 +3,15 @@ import { BrowserRouter as Router } from "react-router-dom"
 import "./App.css"
 import Main from "./components/Main"
 import AppBar from "./components/appBar/AppBar"
+import ThemeConfig from "./theme"
 
 const App = () => (
   <div>
-    <Router>
-      <AppBar />
-      <Main />
-    </Router>
+    <ThemeConfig>
+      <Router>
+        <Main />
+      </Router>
+    </ThemeConfig>
   </div>
 )
 

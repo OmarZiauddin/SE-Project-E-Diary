@@ -1,4 +1,5 @@
 import Homepage from "../components/homepage/Homepage"
+import Timetable from "../components/timetable/Timetable"
 
 export const routes = [
   {
@@ -7,5 +8,12 @@ export const routes = [
     route: "/",
     auth_required: true,
     component: Homepage,
+  },
+  {
+    key: "homepage",
+    title: "Homepage",
+    route: "/dashboard/timetable",
+    auth_required: true,
+    component: Timetable,
   },
 ]
