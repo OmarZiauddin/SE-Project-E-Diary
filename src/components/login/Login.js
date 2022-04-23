@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useContext } from "react"
 import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import CssBaseline from "@mui/material/CssBaseline"
@@ -11,6 +11,8 @@ import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { ENDPOINT } from "../../utils/endpoint"
 import axios from "axios"
+import UserContext from "../../providers/UserContext"
+import MessageContext from "../../providers/MessageContext"
 
 function Copyright(props) {
   return (
@@ -33,6 +35,8 @@ function Copyright(props) {
 const theme = createTheme()
 
 export default function SignIn({ handleValidate }) {
+  const userContext = useContext(UserContext)
+  const messageContext = useContext(MessageContext)
   const handleSubmit = async (event) => {
     try {
       event.preventDefault()
@@ -53,13 +57,20 @@ export default function SignIn({ handleValidate }) {
           },
         }
       )
-      handleValidate(true)
-      // messageContext.setAndToggleSnackbar('Login Successful');
+      console.log(res)
+      if (res.data && res.data[role]) {
+        userContext.handleUser({ ...res.data[role], role })
+        messageContext.setAndToggleSnackbar("Login Successful")
+        handleValidate(true)
+      } else {
+        messageContext.setAndToggleSnackbar("Login Failed")
+        handleValidate(false)
+      }
       // navigate("/dashboard", { replace: true })
     } catch (err) {
       console.log("login failed")
-      // generateErrorToast(err, messageContext);
-      // messageContext.setAndToggleSnackbar('Login failed', true);
+      // generateErrorToast(err, messageContext)
+      messageContext.setAndToggleSnackbar("Login failed", true)
     }
   }
 

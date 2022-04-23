@@ -11,7 +11,6 @@ const styles = () => ({
 const Main = () => {
   const classes = styles()
   const [validate, setValidate] = useState(false)
-  const [open, setOpen] = useState(false)
   const handleValidate = (value) => {
     setValidate(value)
   }
