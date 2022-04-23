@@ -11,6 +11,8 @@ import NavSection from "../../components/sidebar/NavSection"
 import { MHidden } from "../../components/@material-extend"
 //
 import sidebarConfig from "../../components/sidebar/SidebarConfig"
+
+import UserContext from "../../providers/UserContext"
 // ----------------------------------------------------------------------
 
 const DRAWER_WIDTH = 280
@@ -39,6 +41,8 @@ DashboardSidebar.propTypes = {
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation()
+  const userContext = useContext(UserContext)
+  console.log(userContext)
 
   useEffect(() => {
     if (isOpenSidebar) {
@@ -63,11 +67,18 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             <Avatar src={"image"} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
-                Omar
+                {userContext.user.name}
               </Typography>
               <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                Student
+                {userContext.user.role}
               </Typography>
+              {userContext.user.role === "student" ? (
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  {`Class ${userContext.user.class}`}
+                </Typography>
+              ) : (
+                <></>
+              )}
             </Box>
           </AccountStyle>
         </Link>

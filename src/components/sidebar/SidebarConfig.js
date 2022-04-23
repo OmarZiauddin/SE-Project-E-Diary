@@ -11,18 +11,6 @@ const sidebarConfig = [
     path: "/dashboard/timetable",
     icon: getIcon(scheduleIcon),
   },
-  // {
-  //   title: 'announcemet',
-  //   path: '/dashboard/user',
-  //   icon: getIcon(multipleUsers),
-  //   permission: allPermissions.readUser
-  // },
-  // {
-  //   title: 'product',
-  //   path: '/dashboard/products',
-  //   icon: getIcon(shoppingBagFill),
-  //   permission: allPermissions.readProduct
-  // },
 ]
 
 export default sidebarConfig

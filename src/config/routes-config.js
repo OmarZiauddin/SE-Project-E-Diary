@@ -10,8 +10,8 @@ export const routes = [
     component: Homepage,
   },
   {
-    key: "homepage",
-    title: "Homepage",
+    key: "timetable",
+    title: "Timetable",
     route: "/dashboard/timetable",
     auth_required: true,
     component: Timetable,
